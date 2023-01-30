@@ -13,9 +13,9 @@ from picamera import PiCamera
 
 camera = PiCamera()
 
-user = "xxlpwhsh"
-passwd = "K8Dysp8dXHSg"
-port = 12916
+user = ""
+passwd = ""
+port = 00000
 
 arm = False
 
@@ -55,7 +55,7 @@ def getImage():
 def send_pushover(sender="Intruder Alarm", subject="", img_path=""):
     try:
         
-        r = requests.post("https://api.pushover.net/1/messages.json", data={"token":"awcu8vuzimrgm9acnhxwohqxf5cdt7","user":"uv7gabfszpjc728e34c2evf7tvp9ia","message":subject}, files={"attachment":open(img_path,"rb")})
+        r = requests.post("https://api.pushover.net/1/messages.json", data={"token":"","user":"","message":subject}, files={"attachment":open(img_path,"rb")})
     
         return True
     except Exception as e:
@@ -116,7 +116,7 @@ def sendAlert():
         sending = True
         fname = getImage()
         #print(send_pushover(subject="Tripwire crossed.", img_path=fname+".jpg")) # PUSHOVER
-        webhook = DiscordWebhook(url='https://discord.com/api/webhooks/998268664971276298/nnPq3MJj8rmRzGumEj0iG-gTDf7PndIErHYKe9nISszcZZnrOwSE-wCvTB4fGQcsTQIr', content='<@424297184822034444> Tripwire Crossed!!! https://tenor.com/view/spongebob-patrick-panic-run-scream-gif-4656335')
+        webhook = DiscordWebhook(url='https://discord.com/api/webhooks//--wCvTB4fGQcsTQIr', content='<@> Tripwire Crossed!!! https://tenor.com/view/spongebob-patrick-panic-run-scream-gif-4656335')
         response = webhook.execute() # DISCORD
         mqttc.publish(topic, "alert") # MQTT 
         sending = False
